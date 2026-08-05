@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing:border-box
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        form{
+            background:linear-gradient(95deg, blue,rgb(163, 10, 36),blue);
+            width: 100%;
+            height: 80%;
+            
+        }
+        .details{
+            display: flex;
+            flex-direction: column;
+            gap: rem;
+            height: auto;
+            width: 80%;
+          
+        }
+        input{
+            width: 70%;
+            border-radius:20px;
+            min-height: 2rem;
+            border: none;
+            margin: 0.5rem ;
+            cursor: pointer;
+        }
+        label,h2{
+            margin: 0.5rem;
+            color: whitesmoke;
+        }
+        button{
+            width: 120px;
+            height: 35px;
+            border:  solid blue;
+            color: blue;
+        }
+        .last{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input::placeholder{
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <h2>Fill this form and proceed to the test</h2>
+            <div class="details">
+                <label>Your Name</label>
+                <input type="text" placeholder="Input your full name" required>
+                <label>Your REG NO</label>
+                <input type="text" placeholder="Input your REG NO" required>
+                <label>Date of Birth</label>
+                <input type="date" placeholder="D.O.B" required>
+                <label>Department</label>
+                <input type="text" placeholder="Input your Department" required>
+                <label>Your Level</label>
+                <input type="text" placeholder="Input your level" required>
+                <div class="last">
+                   <button id="btn">START</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+    let btn = document.querySelector('#btn');
+
+    btn.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        let form = document.querySelector('form');
+        if (form.checkValidity()) {
+            window.location.href = 'quiz.html'; 
+        } else {
+            form.reportValidity(); 
+        }
+    });
+    </script>
+</body>
+</html>
