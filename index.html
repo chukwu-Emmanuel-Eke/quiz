@@ -4,14 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quiz app</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+             width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content: center;
+        }
+        .container{
+            width: 80%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: #04042cda;
+            border-radius:30px;
+            margin: 1rem;
+            padding: 3rem;
+           
+        }
+        #previous{
+         color: #04042cda;
+         width: 100px;
+         height: 50px;
+         border-radius: 20px;
+         border: none;
+         cursor: pointer;
+        font-weight: 900;
+        }
+        #next{
+         color: #04042cda;
+         width: 100px;
+         height: 50px;
+         border-radius: 20px;
+         border: none;
+         cursor: pointer;
+         font-weight: 900;
+        }
+    .control{
+        display:flex;
+        justify-content: space-between;
+    }
+    h2,h3, #option{
+        color: whitesmoke;
+    }
+  
+    </style>
 </head>
 <body>
     <div class="container">
         <h3 id="questionNumber"></h3>
         <h2 id="question"></h2>
         <div id="option"></div>
+        <div class="control">
         <button id="previous">previous</button>
         <button id="next">next</button>
+        </div>
     </div>
   <script src="quiz.js"></script>
 </body>
