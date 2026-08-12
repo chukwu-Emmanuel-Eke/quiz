@@ -2,101 +2,178 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, user-scale = no">
+    <title>Registration Form</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
-        body{
-             width: 100vw;
-            height: 100vh;
+
+        body {
+            height: 100%;
+            min-height: 100dvh;  
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items:center;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f9;
+            padding: 1rem; 
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px; 
+            display: flex;
             justify-content: center;
         }
-        .container{
-            width: 80%;
-            height: auto;
+
+        form {
+            background: linear-gradient(135deg, #0000FF, #A30A24, #0000FF);
+            width: 100%;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-             background:linear-gradient(95deg, blue,rgb(163, 10, 36),blue);
-            border-radius:30px;
-            margin: 1rem;
-            padding: 3rem;
-            position: fixed;
-            top: 0;
-            box-shadow: 20px 20px  0 white;
+            gap: 1.25rem;
         }
-        #previous{
-         color:   rgba(182, 5, 64, 0.856);
-         width: 100px;
-         height: 50px;
-         border-radius: 20px;
-         border: 2px solid rgba(182, 5, 64, 0.856);
-         cursor: pointer;
-        font-weight: 900;
-        }
-        #next{
-         color: rgba(182, 5, 64, 0.856);
-         width: 100px;
-         height: 50px;
-         border-radius: 20px;
-          border: 2px solid rgba(182, 5, 64, 0.856);
-         cursor: pointer;
-         font-weight: 900;
-        }
-    .control{
-        display:flex;
-        justify-content: space-between;
-    }
-    h2,h3{
-        color: whitesmoke;
-    }
-    #option{
-        display: flex;
-        flex-direction: column;
-        color: whitesmoke;
-        font: 1rem sans-serif;
-    }
-  @media (max-width:379px) {
-    #previous, #next{
-         width: 70px;
-         height: 30px;
-         border-radius: 20px;
-         border: none;
-         cursor: pointer;
-        font-weight: 600;
-    }
-     #option{
-        display: flex;
-        flex-direction: column;
-        color: whitesmoke;
-        font: 0.5rem sans-serif;
-    }
-    h2{
-        font-size: small;
-    }
 
-  }
+        h2 {
+            color: #ffffff;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            width: 100%;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        label {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-left: 0.25rem;
+        }
+
+        input {
+            width: 100%;
+            min-height: 2.75rem; 
+            border-radius: 25px;
+            border: 2px solid transparent;
+            padding: 0 1.25rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        input::placeholder {
+            color: #888888;
+        }
+
+       
+        input[type="date"] {
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        .last {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.75rem;
+        }
+
+        button {
+            width: 100%;
+            max-width: 200px;
+            height: 48px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ffffff;
+            color: #0000FF;
+            font-weight: bold;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem; 
+            }
+
+            form {
+                padding: 1.5rem 1rem;
+                border-radius: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3 id="questionNumber"></h3>
-        <h2 id="question"></h2>
-        <div id="option"></div>
-        <div class="control">
-            <button id="previous">previous</button>
-            <button id="next">next</button>
-        </div>
+        <form action="" id="start-form">
+            <h2>Fill this form and proceed to the test</h2>
+            
+            <div class="details">
+                <div class="input-group">
+                    <label for="fullname">Your Name</label>
+                    <input type="text" id="fullname" placeholder="Input your full name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="regno">Your REG NO</label>
+                    <input type="text" id="regno" placeholder="Input your REG NO" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="dept">Department</label>
+                    <input type="text" id="dept" placeholder="Input your Department" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="level">Your Level</label>
+                    <input type="text" id="level" placeholder="Input your level" required>
+                </div>
+
+                <div class="last">
+                    <button type="submit" id="btn">START</button>
+                </div>
+            </div>
+        </form>
     </div>
-  <script src="quiz.js"></script>
-  <script src="quiz-back.js"></script>
+
+    <script src="quiz-landing.js"></script>
+    
+    
 </body>
 </html>
