@@ -47,7 +47,7 @@ let quiz = [
     {
         questions: 'Which HTML element is used to define an unordered list?',
         options: ['ol', 'ul', 'list', 'li'],
-        answer: 'ul'
+        answer: 'ul'                                                            
     },
     {
         questions: 'Which tag is used to create a hyperlink in HTML?',
@@ -312,6 +312,7 @@ function showResults() {
             <button onclick="location.reload()">Restart Quiz</button>
         </div>
     `;
+    finishQuiz(score);
 }
 
 next.addEventListener('click', function() {
@@ -332,4 +333,5 @@ previous.addEventListener('click', function() {
         currentQuestion--;
         displayQuestion();
     }
+    
 });
