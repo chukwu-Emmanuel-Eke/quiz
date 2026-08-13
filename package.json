@@ -2,7 +2,7 @@
   "name": "quiz-backend",
   "version": "1.0.0",
   "description": "Backend server for quiz app",
-  "main": "server.js",
+  "main": "quiz-server.js",
   "scripts": {
     "start": "node quiz-server.js"
   },
