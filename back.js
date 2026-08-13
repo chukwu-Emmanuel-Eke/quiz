@@ -14,7 +14,7 @@ function finishQuiz(finalScore) {
         score: finalScore
     };
 
-    fetch('https://quiz-backend-ryjf.onrender.com', {
+    fetch('https://quiz-backend-ryjf.onrender.com/api/quiz/save', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
