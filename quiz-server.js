@@ -8,42 +8,39 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Database Connection Config (using Render Environment Variables)
-const db = mysql.createConnection({
+// Database Connection Pool Config (handles idle timeouts and reconnects automatically)
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 27820
+    port: process.env.DB_PORT || 27820,
+    ssl: { rejectUnauthorized: false },
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-// Connect and Auto-Create Table in Aiven
-db.connect(err => {
+// Auto-Create Table in Aiven on startup
+const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS results (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        fullname VARCHAR(255) NOT NULL,
+        regno VARCHAR(100) NOT NULL,
+        dob DATE NOT NULL,
+        dept VARCHAR(100) NOT NULL,
+        level VARCHAR(50) NOT NULL,
+        score INT NOT NULL,
+        submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+`;
+
+db.query(createTableQuery, (err, result) => {
     if (err) {
-        console.error('Cloud Database Connection Error:', err);
+        console.error('Error verifying/creating table:', err);
     } else {
-        console.log('Connected to Cloud MySQL successfully!');
-
-        const createTableQuery = `
-            CREATE TABLE IF NOT EXISTS results (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                fullname VARCHAR(255) NOT NULL,
-                regno VARCHAR(100) NOT NULL,
-                dob DATE NOT NULL,
-                dept VARCHAR(100) NOT NULL,
-                level VARCHAR(50) NOT NULL,
-                score INT NOT NULL,
-                submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `;
-
-        db.query(createTableQuery, (err, result) => {
-            if (err) {
-                console.error('Error creating table:', err);
-            } else {
-                console.log('Results table is ready in Aiven database!');
-            }
-        });
+        console.log('Connected to Cloud MySQL Pool successfully!');
+        console.log('Results table is ready in Aiven database!');
     }
 });
 
